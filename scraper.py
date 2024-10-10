@@ -6,18 +6,15 @@ from config import TEAM_STATS_URL
 response = requests.get(TEAM_STATS_URL['team_a'])
 soup = BeautifulSoup(response.text, 'html.parser')
 
-# Find all the table rows for the passing stats
 table_rows = soup.find_all('tr', {'aria-hidden': 'false'})
 
-# Grab the first 10 rows (players)
 first_10_players = table_rows[:10]
 
-quarter_back = first_10_players[:1]   # First 5 players
+quarter_back = first_10_players[:1] 
 running_backs = first_10_players[1:4]
 recievers = first_10_players[4:10]
 week = 5
 
-# Print details for Group 1
 print("Passing:")
 for index, row in enumerate(quarter_back):
     player_name = row.find('span', {'class': 'nfl-o-roster__player-name'}).text.strip()
@@ -40,7 +37,6 @@ for index, row in enumerate(quarter_back):
 
     print(f"\nPlayer {index + 1}: {player_name}, \nAverage Passing Attempts: {pass_attempts_per_week}, \nAverage Passing Yards: {passing_yards_per_week}, \nAverage Touchdowns: {touchdowns_per_week}, \nAverage Interceptions: {interceptions_per_week}")
 
-# Print details for Group 2
 print("\nRushing:")
 for index, row in enumerate(running_backs):
     player_name = row.find('span', {'class': 'nfl-o-roster__player-name'}).text.strip()
@@ -48,12 +44,10 @@ for index, row in enumerate(running_backs):
     rushing_yards = row.find_all('td')[2].text.strip()
     touchdowns = row.find_all('td')[3].text.strip()
 
-    # Convert stats to integers
     rush_attempts = int(rush_attempts) if rush_attempts.isdigit() else 0
     rushing_yards = int(rushing_yards) if rushing_yards.isdigit() else 0
     touchdowns = int(touchdowns) if touchdowns.isdigit() else 0
 
-    # Divide each stat by the week number
     rush_attempts_per_week = rush_attempts / week
     rushing_yards_per_week = rushing_yards / week
     touchdowns_per_week = touchdowns / week
@@ -66,12 +60,12 @@ for index, row in enumerate(recievers):
     receptions = row.find_all('td')[1].text.strip()
     receiving_yards = row.find_all('td')[2].text.strip()
     touchdowns = row.find_all('td')[5].text.strip()
-    # Convert stats to integers
+
     receptions = int(receptions) if receptions.isdigit() else 0
     receiving_yards = int(receiving_yards) if receiving_yards.isdigit() else 0
     touchdowns = int(touchdowns) if touchdowns.isdigit() else 0
 
-    # Divide each stat by the week number
+
     receptions_per_week = receptions / week
     receiving_yards_per_week = receiving_yards / week
     touchdowns_per_week = touchdowns / week
