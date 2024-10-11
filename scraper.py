@@ -1,8 +1,15 @@
 import requests
+import tweepy
 from bs4 import BeautifulSoup
-from config import TEAM_STATS_URL
-from matchups import *
+from utils.config import TEAM_STATS_URL
+from utils.matchups import *
 from datetime import date
+from keys import *
+
+client = tweepy.Client(bearer_token, api_key, api_secret, access_token, access_token_secret)
+
+auth = tweepy.OAuth1UserHandler(api_key, api_secret, access_token, access_token_secret)
+api = tweepy.API(auth)
 
 def get_current_week_matchups():
     today = date.today()
@@ -26,11 +33,11 @@ def get_team_stats(team):
     current_week = get_current_game_week()
     if current_week is None:
         print(f"No active game week found for today's date.")
-        return
+        return {}
     game_week = current_week - 1
     if not url:
         print(f"No URL found for {team}")
-        return
+        return {}
 
     response = requests.get(url)
     soup = BeautifulSoup(response.text, 'html.parser')
@@ -128,23 +135,29 @@ def get_team_stats(team):
 current_week, current_matchups = get_current_week_matchups()
 
 if current_week:
-    print(f"\nProcessing matchups for Week {current_week}:")
+    print(f"\nProcessing matchups for Week {current_week}:\n")
     for team1, team2 in current_matchups:
-        print(f"\nWeekly Average Stats for {team1.capitalize()} vs. {team2.capitalize()}:")
+        output = f"Weekly Average Stats for {team1.capitalize()} vs. {team2.capitalize()}:\n\n"
 
         team1_stats = get_team_stats(team1)
         team2_stats = get_team_stats(team2)
 
-        print(f"\n{team1.capitalize()} Stats:")
+        output += f"{team1.capitalize()} Stats:\n"
         for category, players in team1_stats.items():
-            print(f"\n{category}:")
+            output += f"\n{category}:\n"
             for player in players:
-                print(player)
+                output += f"- {player['Player Name']}: "
+                output += ", ".join([f"{key}: {value}" for key, value in player.items() if key != "Player Name"]) + "\n"
 
-        print(f"\n{team2.capitalize()} Stats:")
+        output += f"\n{team2.capitalize()} Stats:\n"
         for category, players in team2_stats.items():
-            print(f"\n{category}:")
+            output += f"\n{category}:\n"
             for player in players:
-                print(player)
+                output += f"- {player['Player Name']}: "
+                output += ", ".join([f"{key}: {value}" for key, value in player.items() if key != "Player Name"]) + "\n"
+
+        print(output)
 else:
     print("No matchups found for the current date.")
+
+client.create_tweet(text="STANDBY WE COOKING WEEK 6")
