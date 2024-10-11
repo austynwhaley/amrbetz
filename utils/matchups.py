@@ -94,20 +94,20 @@ w5_matchups = [
 ]
 
 w6_matchups = [
-    ('49ers', 'seahawks'),
-    ('jaguars', 'bears'),
-    ('commanders', 'ravens'),
-    ('cardinals', 'packers'),
-    ('texans', 'patriots'),
-    ('buccaneers', 'saints'),
-    ('browns', 'eagles'),
-    ('colts', 'titans'),
-    ('chargers', 'broncos'),
-    ('steelers', 'raiders'),
-    ('falcons', 'panthers'),
-    ('lions', 'cowboys'),
+    ('bills', 'jets'),
     ('bengals', 'giants'),
-    ('bills', 'jets')
+    ('lions', 'cowboys'),
+    ('falcons', 'panthers'),
+    ('steelers', 'raiders'),
+    ('chargers', 'broncos'),
+    ('colts', 'titans'),
+    ('browns', 'eagles'),
+    ('buccaneers', 'saints'),
+    ('texans', 'patriots'),
+    ('cardinals', 'packers'),
+    ('commanders', 'ravens'),
+    ('jaguars', 'bears'),
+    ('49ers', 'seahawks')
 ]
 
 w7_matchups = [
