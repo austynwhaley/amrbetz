@@ -1,6 +1,7 @@
 # Example configuration for team URLs (modify accordingly)
 TEAM_STATS_URL = {
     'bengals': 'https://www.bengals.com/team/stats/',
+    '49ers': 'https://www.49ers.com/team/stats/',
     'colts': 'https://www.colts.com/team/stats/',
     'chiefs': 'https://www.chiefs.com/team/stats/',
     'cardinals': 'https://www.azcardinals.com/team/stats/',
