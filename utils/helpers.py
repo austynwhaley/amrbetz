@@ -1,9 +1,18 @@
-# utils/helpers.py
+from datetime import date
+from utils.matchups import *
 
-def clean_stat(stat):
-    """Helper function to clean stats (e.g., remove commas, convert to int)."""
-    return int(stat.replace(',', ''))
+def get_current_week_matchups():
+    today = date.today()
+    for week, (start_date, end_date) in date_ranges_by_week.items():
+        if start_date <= today <= end_date:
+            return week, matchups_by_week[week]
+    return None, [] 
 
-def calculate_diff(stat_a, stat_b):
-    """Helper to calculate the difference between two stats."""
-    return stat_a - stat_b
+def get_current_game_week():
+    today = date.today()
+
+    for week, (start_date, end_date) in date_ranges_by_week.items():
+        if start_date <= today <= end_date:
+            return week
+    
+    return None 

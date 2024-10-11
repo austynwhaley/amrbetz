@@ -3,29 +3,13 @@ import tweepy
 from bs4 import BeautifulSoup
 from utils.config import TEAM_STATS_URL
 from utils.matchups import *
-from datetime import date
+from utils.helpers import *
 from keys import *
 
 client = tweepy.Client(bearer_token, api_key, api_secret, access_token, access_token_secret)
 
 auth = tweepy.OAuth1UserHandler(api_key, api_secret, access_token, access_token_secret)
 api = tweepy.API(auth)
-
-def get_current_week_matchups():
-    today = date.today()
-    for week, (start_date, end_date) in date_ranges_by_week.items():
-        if start_date <= today <= end_date:
-            return week, matchups_by_week[week]
-    return None, [] 
-
-def get_current_game_week():
-    today = date.today()
-
-    for week, (start_date, end_date) in date_ranges_by_week.items():
-        if start_date <= today <= end_date:
-            return week
-    
-    return None 
 
 def get_team_stats(team):
     url = TEAM_STATS_URL.get(team.lower())
@@ -160,4 +144,4 @@ if current_week:
 else:
     print("No matchups found for the current date.")
 
-client.create_tweet(text="STANDBY WE COOKING WEEK 6")
+# client.create_tweet(text="STANDBY WE COOKING WEEK 6")
