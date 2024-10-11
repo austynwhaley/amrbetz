@@ -1,3 +1,5 @@
+from datetime import date
+
 w1_matchups = [
     ('ravens', 'chiefs'),
     ('packers', 'eagles'),
@@ -324,3 +326,35 @@ w18_matchups = [
     ('broncos', 'raiders')
 ]
 
+
+date_ranges_by_week = {
+    6: (date(2024, 10, 10), date(2024, 10, 15)),
+    7: (date(2024, 10, 17), date(2024, 10, 22)),
+    8: (date(2024, 10, 24), date(2024, 10, 29)),
+    9: (date(2024, 10, 31), date(2024, 11, 5)),
+    10: (date(2024, 11, 7), date(2024, 11, 12)),
+    11: (date(2024, 11, 14), date(2024, 11, 19)),
+    12: (date(2024, 11, 21), date(2024, 11, 26)),
+    13: (date(2024, 11, 28), date(2024, 12, 3)),
+    14: (date(2024, 12, 5), date(2024, 12, 10)),
+    15: (date(2024, 12, 12), date(2024, 12, 17)),
+    16: (date(2024, 12, 19), date(2024, 12, 24)),
+    17: (date(2024, 12, 26), date(2024, 12, 31)),
+    18: (date(2025, 1, 2), date(2025, 1, 7)),
+}
+
+matchups_by_week = {
+    6: w6_matchups,
+    7: w7_matchups,
+    8: w8_matchups,
+    9: w9_matchups,
+    10: w10_matchups,
+    11: w11_matchups,
+    12: w12_matchups,
+    13: w13_matchups,
+    14: w14_matchups,
+    15: w15_matchups,
+    16: w16_matchups,
+    17: w17_matchups,
+    18: w18_matchups,
+}

@@ -2,10 +2,32 @@ import requests
 from bs4 import BeautifulSoup
 from config import TEAM_STATS_URL
 from matchups import *
+from datetime import date
+
+def get_current_week_matchups():
+    today = date.today()
+    for week, (start_date, end_date) in date_ranges_by_week.items():
+        if start_date <= today <= end_date:
+            return week, matchups_by_week[week]
+    return None, [] 
+
+def get_current_game_week():
+    today = date.today()
+
+    for week, (start_date, end_date) in date_ranges_by_week.items():
+        if start_date <= today <= end_date:
+            return week
+    
+    return None 
 
 def get_team_stats(team):
     url = TEAM_STATS_URL.get(team.lower())
-    game_week = 5
+
+    current_week = get_current_game_week()
+    if current_week is None:
+        print(f"No active game week found for today's date.")
+        return
+    game_week = current_week - 1
     if not url:
         print(f"No URL found for {team}")
         return
@@ -103,20 +125,26 @@ def get_team_stats(team):
 
     return team_stats
 
-for team1, team2 in w6_matchups:
-    print(f"\nStats for {team1} vs. {team2}:")
+current_week, current_matchups = get_current_week_matchups()
 
-    team1_stats = get_team_stats(team1)
-    team2_stats = get_team_stats(team2)
+if current_week:
+    print(f"\nProcessing matchups for Week {current_week}:")
+    for team1, team2 in current_matchups:
+        print(f"\nWeekly Average Stats for {team1.capitalize()} vs. {team2.capitalize()}:")
 
-    print(f"\n{team1} Stats:")
-    for category, players in team1_stats.items():
-        print(f"\n{category}:")
-        for player in players:
-            print(player)
+        team1_stats = get_team_stats(team1)
+        team2_stats = get_team_stats(team2)
 
-    print(f"\n{team2} Stats:")
-    for category, players in team2_stats.items():
-        print(f"\n{category}:")
-        for player in players:
-            print(player)
+        print(f"\n{team1.capitalize()} Stats:")
+        for category, players in team1_stats.items():
+            print(f"\n{category}:")
+            for player in players:
+                print(player)
+
+        print(f"\n{team2.capitalize()} Stats:")
+        for category, players in team2_stats.items():
+            print(f"\n{category}:")
+            for player in players:
+                print(player)
+else:
+    print("No matchups found for the current date.")

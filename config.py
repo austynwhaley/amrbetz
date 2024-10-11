@@ -1,4 +1,6 @@
 # Example configuration for team URLs (modify accordingly)
+from datetime import date
+
 TEAM_STATS_URL = {
     'bengals': 'https://www.bengals.com/team/stats/',
     '49ers': 'https://www.49ers.com/team/stats/',
@@ -33,3 +35,9 @@ TEAM_STATS_URL = {
     'commanders': 'https://www.commanders.com/team/stats/',
     'titans': 'https://www.tennesseetitans.com/team/stats/',
 }
+
+
+current_date = date.today()
+
+# Print current date
+print(current_date)
