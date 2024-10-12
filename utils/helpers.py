@@ -1,5 +1,7 @@
 from datetime import date
 from utils.matchups import *
+import os
+import json
 
 def get_current_week_matchups():
     today = date.today()
@@ -16,3 +18,15 @@ def get_current_game_week():
             return week
     
     return None 
+
+CACHE_FILE = 'team_stats_cache.json'
+
+def load_cache():
+    if os.path.exists(CACHE_FILE):
+        with open(CACHE_FILE, 'r') as f:
+            return json.load(f)
+    return {}
+
+def save_cache(cache_data):
+    with open(CACHE_FILE, 'w') as f:
+        json.dump(cache_data, f)
