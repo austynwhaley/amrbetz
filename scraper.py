@@ -15,9 +15,8 @@ auth = tweepy.OAuth1UserHandler(api_key, api_secret, access_token, access_token_
 api = tweepy.API(auth, wait_on_rate_limit=True)
 
 
-CACHE_TIMEOUT = 60 * 60  # Cache timeout in seconds (1 hour)
+CACHE_TIMEOUT = 60 * 60 
 
-# Caching mechanism for team stats
 cache = load_cache()
 
 def is_cache_valid(team, current_time):
