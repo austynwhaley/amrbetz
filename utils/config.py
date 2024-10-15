@@ -35,9 +35,3 @@ TEAM_STATS_URL = {
     'commanders': 'https://www.commanders.com/team/stats/',
     'titans': 'https://www.tennesseetitans.com/team/stats/',
 }
-
-
-current_date = date.today()
-
-# Print current date
-print(current_date)

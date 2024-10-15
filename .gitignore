@@ -1,6 +1,9 @@
 # api keys
 keys.py
 
+# cache
+team_stats_cache.json
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

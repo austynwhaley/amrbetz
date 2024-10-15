@@ -159,14 +159,14 @@ if current_week:
 
                 tweet_text += category_output + "\n"
 
-            print('tweet', tweet_text.strip())
+            print(tweet_text.strip())
 
             # randomized sleep to avoid rate limiting
-            time.sleep(random.uniform(4.5, 6.5))
-            try:
-                client.create_tweet(text=tweet_text.strip())
-            except tweepy.TweepError as e:
-                print(f"Failed to send tweet: {e}")
+            # time.sleep(random.uniform(4.5, 6.5))
+            # try:
+            #     client.create_tweet(text=tweet_text.strip())
+            # except tweepy.TweepError as e:
+            #     print(f"Failed to send tweet: {e}")
             
             time.sleep(random.uniform(4.5, 6.5))
 else:

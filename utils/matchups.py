@@ -94,20 +94,20 @@ w5_matchups = [
 ]
 
 w6_matchups = [
-    ('bills', 'jets'),
-    ('bengals', 'giants'),
-    ('lions', 'cowboys'),
-    ('falcons', 'panthers'),
-    ('steelers', 'raiders'),
-    ('chargers', 'broncos'),
-    ('colts', 'titans'),
-    ('browns', 'eagles'),
-    ('buccaneers', 'saints'),
-    ('texans', 'patriots'),
-    ('cardinals', 'packers'),
-    ('commanders', 'ravens'),
+    ('49ers', 'seahawks'),
     ('jaguars', 'bears'),
-    ('49ers', 'seahawks')
+    ('commanders', 'ravens'),
+    ('cardinals', 'packers'),
+    ('texans', 'patriots'),
+    ('buccaneers', 'saints'),
+    ('browns', 'eagles'),
+    ('colts', 'titans'),
+    ('chargers', 'broncos'),
+    ('steelers', 'raiders'),
+    ('falcons', 'panthers'),
+    ('lions', 'cowboys'),
+    ('bengals', 'giants'),
+    ('bills', 'jets')
 ]
 
 w7_matchups = [
@@ -328,8 +328,8 @@ w18_matchups = [
 
 
 date_ranges_by_week = {
-    6: (date(2024, 10, 10), date(2024, 10, 15)),
-    7: (date(2024, 10, 17), date(2024, 10, 22)),
+    6: (date(2024, 10, 10), date(2024, 10, 14)),
+    7: (date(2024, 10, 15), date(2024, 10, 22)),
     8: (date(2024, 10, 24), date(2024, 10, 29)),
     9: (date(2024, 10, 31), date(2024, 11, 5)),
     10: (date(2024, 11, 7), date(2024, 11, 12)),
