@@ -162,14 +162,14 @@ if current_week:
             print(tweet_text.strip())
 
             # randomized sleep to avoid rate limiting
-            # time.sleep(random.uniform(4.5, 6.5))
-            # try:
-            #     client.create_tweet(text=tweet_text.strip())
-            # except tweepy.TweepError as e:
-            #     print(f"Failed to send tweet: {e}")
+            time.sleep(random.uniform(4.5, 6.5))
+            try:
+                client.create_tweet(text=tweet_text.strip())
+            except tweepy.TweepError as e:
+                print(f"Failed to send tweet: {e}")
             
             time.sleep(random.uniform(4.5, 6.5))
 else:
     print("No matchups found for the current date.")
 
-# client.create_tweet(text="ALL DONE, UR WELCOME - AMR")
+client.create_tweet(text="ALL DONE, UR WELCOME - AMR")
