@@ -38,7 +38,12 @@ def get_team_stats(team):
     if current_week is None:
         print(f"No active game week found for today's date.")
         return {}
-    game_week = current_week - 1
+    
+    games_played = get_team_game_weeks(team)
+    if games_played == 0:
+        print(f"No games played by {team} this season.")
+        return {}
+    
     if not url:
         print(f"No URL found for {team}")
         return {}
@@ -76,9 +81,9 @@ def get_team_stats(team):
                 receiving_yards = int_or_zero(row.find_all('td')[2].text.strip())
                 touchdowns = int_or_zero(row.find_all('td')[5].text.strip())
 
-                receptions_per_week = receptions / game_week
-                receiving_yards_per_week = receiving_yards / game_week
-                touchdowns_per_week = touchdowns / game_week
+                receptions_per_week = receptions / games_played
+                receiving_yards_per_week = receiving_yards / games_played
+                touchdowns_per_week = touchdowns / games_played
 
                 player_stats = {
                     "Player Name": player_name,
@@ -92,9 +97,9 @@ def get_team_stats(team):
                 rushing_yards = int_or_zero(row.find_all('td')[2].text.strip())
                 touchdowns = int_or_zero(row.find_all('td')[5].text.strip())
 
-                rush_attempts_per_week = rush_attempts / game_week
-                rushing_yards_per_week = rushing_yards / game_week
-                touchdowns_per_week = touchdowns / game_week
+                rush_attempts_per_week = rush_attempts / games_played
+                rushing_yards_per_week = rushing_yards / games_played
+                touchdowns_per_week = touchdowns / games_played
 
                 player_stats = {
                     "Player Name": player_name,
@@ -109,10 +114,10 @@ def get_team_stats(team):
                 touchdowns = int_or_zero(row.find_all('td')[6].text.strip())
                 interceptions = int_or_zero(row.find_all('td')[8].text.strip())
 
-                pass_attempts_per_week = pass_attempts / game_week
-                passing_yards_per_week = passing_yards / game_week
-                touchdowns_per_week = touchdowns / game_week
-                interceptions_per_week = interceptions / game_week
+                pass_attempts_per_week = pass_attempts / games_played
+                passing_yards_per_week = passing_yards / games_played
+                touchdowns_per_week = touchdowns / games_played
+                interceptions_per_week = interceptions / games_played
 
                 player_stats = {
                     "Player Name": player_name,
@@ -172,4 +177,4 @@ if current_week:
 else:
     print("No matchups found for the current date.")
 
-client.create_tweet(text="ALL DONE, UR WELCOME - AMR")
+client.create_tweet(text= f"YAY WEEK {current_week} STATS ALL DONE, UR WELCOME - AMR")

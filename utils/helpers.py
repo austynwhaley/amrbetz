@@ -1,5 +1,6 @@
 from datetime import date
 from utils.matchups import *
+from utils.bye_week import *
 import os
 import json
 
@@ -30,3 +31,15 @@ def load_cache():
 def save_cache(cache_data):
     with open(CACHE_FILE, 'w') as f:
         json.dump(cache_data, f)
+
+def get_team_game_weeks(team):
+    """Returns the number of game weeks for a given team by checking for bye weeks."""
+    current_week = get_current_game_week()
+    if current_week is None:
+        return 0
+    
+    games_played = current_week - 1 
+    for week, teams in bye_weeks.items():
+        if team.lower() in teams:
+            games_played -= 1 
+    return games_played
